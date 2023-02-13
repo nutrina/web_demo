@@ -80,7 +80,7 @@ jobs:
           # note you'll typically need to create a personal access token
           # with permissions to create releases in the other repo
           body_path: ${{ github.workspace }}-CHANGELOG.txt
-          name: ${{ steps.version.outputs.version }}
+          name: HELLO ${{ steps.version.outputs.version }}
           tag_name: ${{ steps.version.outputs.version_tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
           generate_release_notes: true
