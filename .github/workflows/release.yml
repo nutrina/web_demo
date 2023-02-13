@@ -54,20 +54,21 @@ jobs:
           user_format_type: "csv"
           # Prevents pre-v1.0.0 version from automatically incrementing the major version.
           # If enabled, when the major version is 0, major releases will be treated as minor and minor as patch. Note that the version_type output is unchanged.
-          enable_prerelease_mode: true
+          enable_prerelease_mode: false
 
       - name: debug
         run: |
           echo "Version tag : ${{ steps.version.outputs.version_tag }}"
           echo "Version     : ${{ steps.version.outputs.version }}"
+          echo "Authors     : ${{ steps.version.outputs.authors }}"
+          
 
       - name: release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
-          body_path: ${{ github.workspace }}-CHANGELOG.txt
+          # body_path: ${{ github.workspace }}-CHANGELOG.txt
           # note you'll typically need to create a personal access token
           # with permissions to create releases in the other repo
-          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          GITHUB_REPOSITORY: my_gh_org/my_gh_repo
+          GITHUB_REPOSITORY: nutrina/web_demo
