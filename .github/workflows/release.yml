@@ -85,5 +85,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           generate_release_notes: true
           draft: false
+          prerelease: true
         env:
           GITHUB_REPOSITORY: nutrina/web_demo
