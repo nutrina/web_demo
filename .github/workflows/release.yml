@@ -73,18 +73,30 @@ jobs:
         run: |
           cat ${{ github.workspace }}-CHANGELOG.txt
 
-      - name: release
-        # https://github.com/marketplace/actions/gh-release
-        uses: softprops/action-gh-release@v0.1.15
+      - name: Release
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
         with:
-          # note you'll typically need to create a personal access token
-          # with permissions to create releases in the other repo
-          body_path: ${{ github.workspace }}-CHANGELOG.txt
-          name: HELLO ${{ steps.version.outputs.version }}
-          tag_name: ${{ steps.version.outputs.version_tag }}
+          allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          generate_release_notes: true
+          bodyFile: ${{ github.workspace }}-CHANGELOG.txt
+          generateReleaseNotes: true
+          name: ${{ steps.version.outputs.version }}
+          tag: ${{ steps.version.outputs.version_tag }}
           draft: true
-          prerelease: false
-        env:
-          GITHUB_REPOSITORY: nutrina/web_demo
+
+      # - name: release
+      #   # https://github.com/marketplace/actions/gh-release
+      #   uses: softprops/action-gh-release@v0.1.15
+      #   with:
+      #     # note you'll typically need to create a personal access token
+      #     # with permissions to create releases in the other repo
+      #     body_path: ${{ github.workspace }}-CHANGELOG.txt
+      #     name: HELLO ${{ steps.version.outputs.version }}
+      #     tag_name: ${{ steps.version.outputs.version_tag }}
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     generate_release_notes: true
+      #     draft: true
+      #     prerelease: false
+      #   env:
+      #     GITHUB_REPOSITORY: nutrina/web_demo
