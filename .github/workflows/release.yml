@@ -63,7 +63,12 @@ jobs:
           echo "Version tag : ${{ steps.version.outputs.version_tag }}"
           echo "Version     : ${{ steps.version.outputs.version }}"
           echo "Authors     : ${{ steps.version.outputs.authors }}"
-          git log ${{ steps.version.outputs.previous_commit}}..${{ steps.version.outputs.current_commit}} --pretty="- %s" > ${{ github.workspace }}-CHANGELOG.txt
+          echo "# Changelog" > ${{ github.workspace }}-CHANGELOG.txt
+          git log ${{ steps.version.outputs.previous_commit}}..${{ steps.version.outputs.current_commit}} --pretty="- %s" >> ${{ github.workspace }}-CHANGELOG.txt
+          echo "" >> ${{ github.workspace }}-CHANGELOG.txt
+          echo "# Authors" >> ${{ github.workspace }}-CHANGELOG.txt
+          echo ${{ steps.version.outputs.authors }}" >> ${{ github.workspace }}-CHANGELOG.txt
+          cat ${{ github.workspace }}-CHANGELOG.txt
 
       - name: release
         # https://github.com/marketplace/actions/git-semantic-version
