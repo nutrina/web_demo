@@ -57,7 +57,6 @@ jobs:
           enable_prerelease_mode: true
 
       - name: debug
-        needs: version
         run: |
           echo "Version tag : ${{ steps.version.outputs.version_tag }}"
           echo "Version     : ${{ steps.version.outputs.version }}"
