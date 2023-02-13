@@ -67,7 +67,7 @@ jobs:
           git log ${{ steps.version.outputs.previous_commit}}..${{ steps.version.outputs.current_commit}} --pretty="- %s" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "# Authors" >> ${{ github.workspace }}-CHANGELOG.txt
-          echo ${{ steps.version.outputs.authors }}" >> ${{ github.workspace }}-CHANGELOG.txt
+          echo ${{ steps.version.outputs.authors }} >> ${{ github.workspace }}-CHANGELOG.txt
           cat ${{ github.workspace }}-CHANGELOG.txt
 
       - name: release
