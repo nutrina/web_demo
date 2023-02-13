@@ -66,7 +66,7 @@ jobs:
           echo "## Changelog" > ${{ github.workspace }}-CHANGELOG.txt
           git log ${{ steps.version.outputs.previous_commit}}..${{ steps.version.outputs.current_commit}} --pretty="- %s" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "" >> ${{ github.workspace }}-CHANGELOG.txt
-          echo "**Full Changelog**": https://github.com/nutrina/web_demo/compare/${{ steps.version.outputs.previous_version }}...${{ steps.version.outputs.version_tag }}
+          echo "**Full Changelog**": https://github.com/nutrina/web_demo/compare/${{ steps.version.outputs.previous_version }}...${{ steps.version.outputs.version_tag }} >> ${{ github.workspace }}-CHANGELOG.txt
           echo "" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "## Authors" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "${{ steps.version.outputs.authors }}" >> ${{ github.workspace }}-CHANGELOG.txt
