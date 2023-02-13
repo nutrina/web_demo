@@ -74,7 +74,8 @@ jobs:
           cat ${{ github.workspace }}-CHANGELOG.txt
 
       - name: release
-        uses: softprops/action-gh-release@v1
+        # https://github.com/marketplace/actions/gh-release
+        uses: softprops/action-gh-release@v0.1.15
         with:
           # note you'll typically need to create a personal access token
           # with permissions to create releases in the other repo
