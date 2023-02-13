@@ -84,6 +84,6 @@ jobs:
           tag_name: ${{ steps.version.outputs.version_tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
           generate_release_notes: true
-          draft: true
+          draft: false
         env:
           GITHUB_REPOSITORY: nutrina/web_demo
