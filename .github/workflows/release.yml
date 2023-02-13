@@ -69,6 +69,7 @@ jobs:
           # body_path: ${{ github.workspace }}-CHANGELOG.txt
           # note you'll typically need to create a personal access token
           # with permissions to create releases in the other repo
+          tag_name: ${{ steps.version.outputs.version_tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_REPOSITORY: nutrina/web_demo
