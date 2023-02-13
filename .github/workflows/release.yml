@@ -83,7 +83,7 @@ jobs:
           generateReleaseNotes: true
           name: ${{ steps.version.outputs.version }}
           tag: ${{ steps.version.outputs.version_tag }}
-          draft: false
+          draft: true
 
       # - name: release
       #   # https://github.com/marketplace/actions/gh-release
