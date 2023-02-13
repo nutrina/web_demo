@@ -81,7 +81,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           bodyFile: ${{ github.workspace }}-CHANGELOG.txt
           generateReleaseNotes: true
-          name: ${{ steps.version.outputs.version }}
+          name: Name ${{ steps.version.outputs.version }}
           tag: ${{ steps.version.outputs.version_tag }}
           draft: true
 
