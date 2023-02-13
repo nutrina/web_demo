@@ -58,7 +58,7 @@ jobs:
           # If enabled, when the major version is 0, major releases will be treated as minor and minor as patch. Note that the version_type output is unchanged.
           # enable_prerelease_mode: false
 
-      - name: Debug
+      - name: Release Info
         run: |
           echo "Version tag : ${{ steps.version.outputs.version_tag }}"
           echo "Version     : ${{ steps.version.outputs.version }}"
@@ -66,7 +66,7 @@ jobs:
           echo "## Changelog" > ${{ github.workspace }}-CHANGELOG.txt
           git log ${{ steps.version.outputs.previous_commit}}..${{ steps.version.outputs.current_commit}} --pretty="- %s" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "" >> ${{ github.workspace }}-CHANGELOG.txt
-          echo "**Full Changelog**": https://github.com/nutrina/web_demo/compare/${{ steps.version.outputs.previous_version }}...${{ steps.version.outputs.version_tag }} >> ${{ github.workspace }}-CHANGELOG.txt
+          echo "**[Full Changelog]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/compare/${{ steps.version.outputs.previous_commit}}...${{ steps.version.outputs.current_commit}})** >> ${{ github.workspace }}-CHANGELOG.txt
           echo "" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "## Authors" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "${{ steps.version.outputs.authors }}" >> ${{ github.workspace }}-CHANGELOG.txt
