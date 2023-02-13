@@ -71,5 +71,7 @@ jobs:
           # with permissions to create releases in the other repo
           tag_name: ${{ steps.version.outputs.version_tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          generate_release_notes: true
+          draft: true
         env:
           GITHUB_REPOSITORY: nutrina/web_demo
