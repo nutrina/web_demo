@@ -63,14 +63,15 @@ jobs:
           echo "Version tag : ${{ steps.version.outputs.version_tag }}"
           echo "Version     : ${{ steps.version.outputs.version }}"
           echo "Authors     : ${{ steps.version.outputs.authors }}"
-          
+          git log ${{ steps.version.outputs.previous_commit}}..${{ steps.version.outputs.current_commit}} --pretty="- %s" > ${{ github.workspace }}-CHANGELOG.txt
 
       - name: release
+        # https://github.com/marketplace/actions/git-semantic-version
         uses: softprops/action-gh-release@v1
         with:
-          # body_path: ${{ github.workspace }}-CHANGELOG.txt
           # note you'll typically need to create a personal access token
           # with permissions to create releases in the other repo
+          body_path: ${{ github.workspace }}-CHANGELOG.txt
           name: ${{ steps.version.outputs.version }}
           tag_name: ${{ steps.version.outputs.version_tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
