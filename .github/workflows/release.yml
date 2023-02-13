@@ -63,10 +63,10 @@ jobs:
           echo "Version tag : ${{ steps.version.outputs.version_tag }}"
           echo "Version     : ${{ steps.version.outputs.version }}"
           echo "Authors     : ${{ steps.version.outputs.authors }}"
-          echo "# Changelog" > ${{ github.workspace }}-CHANGELOG.txt
+          echo "## Changelog" > ${{ github.workspace }}-CHANGELOG.txt
           git log ${{ steps.version.outputs.previous_commit}}..${{ steps.version.outputs.current_commit}} --pretty="- %s" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "" >> ${{ github.workspace }}-CHANGELOG.txt
-          echo "# Authors" >> ${{ github.workspace }}-CHANGELOG.txt
+          echo "## Authors" >> ${{ github.workspace }}-CHANGELOG.txt
           echo "${{ steps.version.outputs.authors }}" >> ${{ github.workspace }}-CHANGELOG.txt
 
       - name: Debug 2
@@ -85,6 +85,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           generate_release_notes: true
           draft: true
-          prerelease: true
+          prerelease: false
         env:
           GITHUB_REPOSITORY: nutrina/web_demo
